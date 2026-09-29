@@ -1,9 +1,6 @@
 import streamlit as st
 
-st.set_page_config(
-    page_title="Supermarket Queue Simulator",
-    page_layout="wide"
-)
+st.set_page_config(page_title="Supermarket Queue Simulator")
 
 import simpy
 import random
@@ -14,9 +11,9 @@ st.title("🛒 Supermarket Checkout Queue Simulator")
 st.markdown("Applied Probability and Random Processes Project - $M/M/c$ Queueing Model Simulation.")
 
 st.sidebar.header("⚙️ Simulation Settings")
-arrival_rate = st.sidebar.slider("Arrival Rate (顧客/min - $\lambda$)", 1.0, 50.0, 15.0, 1.0)
-service_time = st.sidebar.slider("Average Service Time (minutes - $1/\mu$)", 0.5, 5.0, 2.0, 0.25)
-num_servers = st.sidebar.slider("Number of Open Cashiers ($c$)", 1, 15, 5, 1)
+arrival_rate = st.sidebar.slider("Arrival Rate (lambda)", 1.0, 50.0, 15.0, 1.0)
+service_time = st.sidebar.slider("Average Service Time (minutes)", 0.5, 5.0, 2.0, 0.25)
+num_servers = st.sidebar.slider("Number of Open Cashiers (c)", 1, 15, 5, 1)
 sim_duration = st.sidebar.slider("Simulation Duration (minutes)", 60, 1440, 480, 60)
 
 mu = 1.0 / service_time
@@ -24,7 +21,7 @@ lam = arrival_rate
 rho = lam / (num_servers * mu)
 
 st.sidebar.markdown("---")
-st.sidebar.info(f"**Theoretical Server Utilization ($\rho$):** {rho:.2f}")
+st.sidebar.info(f"**Theoretical Server Utilization (rho):** {rho:.2f}")
 if rho >= 1.0:
     st.sidebar.error("⚠️ Warning: Arrival rate exceeds capacity!")
 
@@ -75,9 +72,9 @@ if st.button("▶️ Run Simulation"):
         st.markdown("### 📊 Simulation Results")
         col1, col2, col3, col4 = st.columns(4)
         col1.metric("Total Customers Served", f"{total_customers}")
-        col2.metric("Avg Waiting Time ($W_q$)", f"{avg_wait:.2f} min")
+        col2.metric("Avg Waiting Time", f"{avg_wait:.2f} min")
         col3.metric("Max Waiting Time", f"{max_wait:.2f} min")
-        col4.metric("Active Cashiers ($c$)", f"{num_servers}")
+        col4.metric("Active Cashiers", f"{num_servers}")
 
         st.markdown("### 📈 Queue Length Over Time")
         fig, ax = plt.subplots(figsize=(10, 4))
