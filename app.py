@@ -1,6 +1,5 @@
 import streamlit as st
 
-# إعدادات صفحة الموقع (يجب أن تكون أول أمر برمجى تماماً)
 st.set_page_config(
     page_title="محاكي طوابير السوبرماركت - Applied Probability",
     page_layout="wide"
@@ -14,14 +13,12 @@ import matplotlib.pyplot as plt
 st.title("🛒 محاكي طوابير السوبرماركت الكبير (Supermarket Checkout Queue Simulator)")
 st.markdown("مشروع تطبيق لمادة **الاحتمالات التطبيقية والعمليات العشوائية** - محاكاة نظام طوابير متعدد الكاشيرات ($M/M/c$).")
 
-# شريط جانبى لإدخال المتغيرات (Parameters)
 st.sidebar.header("⚙️ إعدادات المحاكاة (Inputs)")
 arrival_rate = st.sidebar.slider("معدل وصول الزبائن (عميل/دقيقة - $\lambda$)", 1.0, 50.0, 15.0, 1.0)
 service_time = st.sidebar.slider("متوسط زمن خدمة العميل الواحد (دقائق - $1/\mu$)", 0.5, 5.0, 2.0, 0.25)
 num_servers = st.sidebar.slider("عدد الكاشيرات المفتوحة ($c$)", 1, 15, 5, 1)
 sim_duration = st.sidebar.slider("مدة المحاكاة (دقائق)", 60, 1440, 480, 60)
 
-# حسابات نظرية لـ M/M/c
 mu = 1.0 / service_time
 lam = arrival_rate
 rho = lam / (num_servers * mu)
