@@ -1,14 +1,15 @@
 import streamlit as st
-import simpy
-import random
-import pandas as pd
-import matplotlib.pyplot as plt
 
-# إعدادات صفحة الموقع
+# إعدادات صفحة الموقع (يجب أن تكون أول أمر برمجى تماماً)
 st.set_page_config(
     page_title="محاكي طوابير السوبرماركت - Applied Probability",
     page_layout="wide"
 )
+
+import simpy
+import random
+import pandas as pd
+import matplotlib.pyplot as plt
 
 st.title("🛒 محاكي طوابير السوبرماركت الكبير (Supermarket Checkout Queue Simulator)")
 st.markdown("مشروع تطبيق لمادة **الاحتمالات التطبيقية والعمليات العشوائية** - محاكاة نظام طوابير متعدد الكاشيرات ($M/M/c$).")
